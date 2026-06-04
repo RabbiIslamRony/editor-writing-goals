@@ -1,5 +1,5 @@
 === Editor Writing Goals ===
-Contributors: alhamdulillah
+Contributors: ronya4927
 Tags: writing, word count, character count, block editor, readability
 Requires at least: 6.5
 Tested up to: 7.0
