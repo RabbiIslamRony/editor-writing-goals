@@ -1,0 +1,15 @@
+{
+  "name": "editor-writing-goals",
+  "version": "1.0.0",
+  "description": "Editor-only WordPress writing goals and content metrics sidebar.",
+  "license": "GPL-2.0-or-later",
+  "private": true,
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js src"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  }
+}

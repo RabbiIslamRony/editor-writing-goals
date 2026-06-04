@@ -1,0 +1,9 @@
+node_modules
+.git
+.github
+.agents
+coverage
+*.log
+.DS_Store
+npm-debug.log*
+.npmrc
