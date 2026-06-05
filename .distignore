@@ -8,3 +8,8 @@ coverage
 npm-debug.log*
 .npmrc
 README.md
+.gitignore
+.distignore
+languages/.gitkeep
+src
+package.json

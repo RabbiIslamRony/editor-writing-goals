@@ -5,7 +5,7 @@ Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 1.0.0
-License: GPLv2 or later
+License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Track writing goals, content metrics, length checks, and readability directly inside the block editor sidebar.
@@ -75,11 +75,6 @@ No. Version 1.0 is focused on the WordPress block editor.
 = Does it use AI or an external API? =
 
 No. All calculations run locally in the editor.
-
-== Screenshots ==
-
-1. Writing Goals panel in the block editor sidebar.
-2. Settings page for default goals and feature toggles.
 
 == Changelog ==
 

@@ -21,8 +21,6 @@ class Plugin {
 	 * @return void
 	 */
 	public static function init() {
-		load_plugin_textdomain( 'editor-writing-goals', false, dirname( plugin_basename( EWG_PLUGIN_FILE ) ) . '/languages' );
-
 		$settings = new Settings();
 		$settings->register();
 

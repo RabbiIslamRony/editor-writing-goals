@@ -4,12 +4,7 @@ import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 import { registerPlugin } from '@wordpress/plugins';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { __, sprintf } from '@wordpress/i18n';
-import {
-	BaseControl,
-	PanelRow,
-	TextControl,
-	__experimentalText as Text,
-} from '@wordpress/components';
+import { BaseControl, PanelRow, TextControl } from '@wordpress/components';
 
 const config = window.editorWritingGoals || {};
 const settings = config.settings || {};
@@ -50,7 +45,9 @@ const getTextFromHtml = ( html = '' ) => {
 		'text/html'
 	);
 
-	doc.querySelectorAll( 'script, style' ).forEach( ( node ) => node.remove() );
+	doc.querySelectorAll( 'script, style' ).forEach( ( node ) =>
+		node.remove()
+	);
 
 	return ( doc.body.textContent || '' ).replace( /\s+/g, ' ' ).trim();
 };
@@ -76,7 +73,9 @@ const getParagraphTexts = ( html = '' ) => {
 	);
 
 	return Array.from( doc.querySelectorAll( 'p' ) )
-		.map( ( node ) => ( node.textContent || '' ).replace( /\s+/g, ' ' ).trim() )
+		.map( ( node ) =>
+			( node.textContent || '' ).replace( /\s+/g, ' ' ).trim()
+		)
 		.filter( Boolean );
 };
 
@@ -84,13 +83,17 @@ const calculateMetrics = ( content ) => {
 	const text = getTextFromHtml( content );
 	const paragraphTexts = getParagraphTexts( content );
 	const words = countWords( text );
-	const readingSpeed = toPositiveInteger( resolvedSettings.reading_speed ) || 200;
+	const readingSpeed =
+		toPositiveInteger( resolvedSettings.reading_speed ) || 200;
 	const sentences = text
 		.split( /[.!?]+/ )
 		.map( ( sentence ) => sentence.trim() )
 		.filter( Boolean );
 	const sentenceWords = sentences.map( countWords ).filter( Boolean );
-	const sentenceWordTotal = sentenceWords.reduce( ( total, count ) => total + count, 0 );
+	const sentenceWordTotal = sentenceWords.reduce(
+		( total, count ) => total + count,
+		0
+	);
 	const averageSentenceLength = sentenceWords.length
 		? Math.round( sentenceWordTotal / sentenceWords.length )
 		: 0;
@@ -102,7 +105,9 @@ const calculateMetrics = ( content ) => {
 		text,
 		words,
 		characters: text.length,
-		readingTime: words ? Math.max( 1, Math.round( words / readingSpeed ) ) : 0,
+		readingTime: words
+			? Math.max( 1, Math.round( words / readingSpeed ) )
+			: 0,
 		paragraphs: paragraphTexts.length || ( text ? 1 : 0 ),
 		headings: ( content.match( /<h[1-6]\b/gi ) || [] ).length,
 		averageSentenceLength,
@@ -156,6 +161,10 @@ const StatusRow = ( { label, count, min, max } ) => {
 	);
 };
 
+const ProgressHelpText = ( { children } ) => (
+	<p className="components-base-control__help">{ children }</p>
+);
+
 const GoalProgress = ( { label, current, target } ) => {
 	if ( ! target ) {
 		return null;
@@ -170,14 +179,14 @@ const GoalProgress = ( { label, current, target } ) => {
 				<strong>{ percent }%</strong>
 			</div>
 			<progress value={ Math.min( current, target ) } max={ target } />
-			<Text variant="muted" size="12">
+			<ProgressHelpText>
 				{ sprintf(
 					/* translators: 1: current count, 2: target count. */
 					__( '%1$d of %2$d', 'editor-writing-goals' ),
 					current,
 					target
 				) }
-			</Text>
+			</ProgressHelpText>
 		</div>
 	);
 };
@@ -197,7 +206,9 @@ const WritingGoalsPanel = () => {
 	const metrics = calculateMetrics( content );
 	const wordTarget = toPositiveInteger( meta[ WORD_TARGET_META ] );
 	const characterTarget = toPositiveInteger( meta[ CHARACTER_TARGET_META ] );
-	const defaultWordTarget = toPositiveInteger( resolvedSettings.default_word_goal );
+	const defaultWordTarget = toPositiveInteger(
+		resolvedSettings.default_word_goal
+	);
 	const defaultCharacterTarget = toPositiveInteger(
 		resolvedSettings.default_character_goal
 	);
@@ -205,7 +216,9 @@ const WritingGoalsPanel = () => {
 	const effectiveCharacterTarget = characterTarget || defaultCharacterTarget;
 	const titleText = typeof title === 'string' ? title : title?.raw || '';
 	const excerptText = getTextFromHtml( excerpt );
-	const showTitleCheck = Boolean( Number( resolvedSettings.enable_title_check ) );
+	const showTitleCheck = Boolean(
+		Number( resolvedSettings.enable_title_check )
+	);
 	const showExcerptCheck = Boolean(
 		Number( resolvedSettings.enable_excerpt_check )
 	);
@@ -228,7 +241,10 @@ const WritingGoalsPanel = () => {
 		>
 			<div className="ewg-panel">
 				<div className="ewg-section">
-					<MetricRow label={ __( 'Words', 'editor-writing-goals' ) } value={ metrics.words } />
+					<MetricRow
+						label={ __( 'Words', 'editor-writing-goals' ) }
+						value={ metrics.words }
+					/>
 					<MetricRow
 						label={ __( 'Characters', 'editor-writing-goals' ) }
 						value={ metrics.characters }
@@ -265,12 +281,17 @@ const WritingGoalsPanel = () => {
 							defaultWordTarget
 								? sprintf(
 										/* translators: %d: default word target. */
-										__( 'Default: %d', 'editor-writing-goals' ),
+										__(
+											'Default: %d',
+											'editor-writing-goals'
+										),
 										defaultWordTarget
 								  )
 								: ''
 						}
-						onChange={ ( value ) => updateMeta( WORD_TARGET_META, value ) }
+						onChange={ ( value ) =>
+							updateMeta( WORD_TARGET_META, value )
+						}
 					/>
 					<GoalProgress
 						label={ __( 'Word goal', 'editor-writing-goals' ) }
@@ -279,7 +300,10 @@ const WritingGoalsPanel = () => {
 					/>
 
 					<TextControl
-						label={ __( 'Target characters', 'editor-writing-goals' ) }
+						label={ __(
+							'Target characters',
+							'editor-writing-goals'
+						) }
 						type="number"
 						min="0"
 						value={ characterTarget || '' }
@@ -287,12 +311,17 @@ const WritingGoalsPanel = () => {
 							defaultCharacterTarget
 								? sprintf(
 										/* translators: %d: default character target. */
-										__( 'Default: %d', 'editor-writing-goals' ),
+										__(
+											'Default: %d',
+											'editor-writing-goals'
+										),
 										defaultCharacterTarget
 								  )
 								: ''
 						}
-						onChange={ ( value ) => updateMeta( CHARACTER_TARGET_META, value ) }
+						onChange={ ( value ) =>
+							updateMeta( CHARACTER_TARGET_META, value )
+						}
 					/>
 					<GoalProgress
 						label={ __( 'Character goal', 'editor-writing-goals' ) }
@@ -316,7 +345,10 @@ const WritingGoalsPanel = () => {
 						) }
 						{ showExcerptCheck && (
 							<StatusRow
-								label={ __( 'Excerpt', 'editor-writing-goals' ) }
+								label={ __(
+									'Excerpt',
+									'editor-writing-goals'
+								) }
 								count={ excerptText.length }
 								min={ 120 }
 								max={ 160 }
@@ -325,25 +357,36 @@ const WritingGoalsPanel = () => {
 					</div>
 				) }
 
-				{ Boolean( Number( resolvedSettings.enable_readability_check ) ) && (
+				{ Boolean(
+					Number( resolvedSettings.enable_readability_check )
+				) && (
 					<div className="ewg-section">
 						<BaseControl.VisualLabel>
 							{ __( 'Readability', 'editor-writing-goals' ) }
 						</BaseControl.VisualLabel>
 						<MetricRow
-							label={ __( 'Avg sentence', 'editor-writing-goals' ) }
+							label={ __(
+								'Avg sentence',
+								'editor-writing-goals'
+							) }
 							value={
 								metrics.averageSentenceLength
 									? sprintf(
 											/* translators: %d: word count. */
-											__( '%d words', 'editor-writing-goals' ),
+											__(
+												'%d words',
+												'editor-writing-goals'
+											),
 											metrics.averageSentenceLength
 									  )
 									: __( '0 words', 'editor-writing-goals' )
 							}
 						/>
 						<MetricRow
-							label={ __( 'Long paragraphs', 'editor-writing-goals' ) }
+							label={ __(
+								'Long paragraphs',
+								'editor-writing-goals'
+							) }
 							value={ metrics.longParagraphs }
 						/>
 					</div>
