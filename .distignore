@@ -13,3 +13,6 @@ README.md
 languages/.gitkeep
 src
 package.json
+scripts
+*.zip
+dist
