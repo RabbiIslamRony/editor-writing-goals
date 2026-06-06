@@ -12,22 +12,22 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: editor-writing-goals
  *
- * @package EditorWritingGoals
+ * @package Ronya4927EditorWritingGoals
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EWG_VERSION', '1.0.0' );
-define( 'EWG_PLUGIN_FILE', __FILE__ );
-define( 'EWG_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'EWG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'EDITOR_WRITING_GOALS_VERSION', '1.0.0' );
+define( 'EDITOR_WRITING_GOALS_PLUGIN_FILE', __FILE__ );
+define( 'EDITOR_WRITING_GOALS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'EDITOR_WRITING_GOALS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-require_once EWG_PLUGIN_DIR . 'includes/class-settings.php';
-require_once EWG_PLUGIN_DIR . 'includes/class-post-meta.php';
-require_once EWG_PLUGIN_DIR . 'includes/class-editor-assets.php';
-require_once EWG_PLUGIN_DIR . 'includes/class-plugin.php';
+require_once EDITOR_WRITING_GOALS_PLUGIN_DIR . 'includes/class-settings.php';
+require_once EDITOR_WRITING_GOALS_PLUGIN_DIR . 'includes/class-post-meta.php';
+require_once EDITOR_WRITING_GOALS_PLUGIN_DIR . 'includes/class-editor-assets.php';
+require_once EDITOR_WRITING_GOALS_PLUGIN_DIR . 'includes/class-plugin.php';
 
 /**
  * Store default settings on activation.
@@ -35,10 +35,10 @@ require_once EWG_PLUGIN_DIR . 'includes/class-plugin.php';
  * @return void
  */
 function editor_writing_goals_activate() {
-	if ( false === get_option( \EditorWritingGoals\Settings::OPTION_NAME ) ) {
-		add_option( \EditorWritingGoals\Settings::OPTION_NAME, \EditorWritingGoals\Settings::get_defaults() );
+	if ( false === get_option( \Ronya4927\EditorWritingGoals\Settings::OPTION_NAME ) ) {
+		add_option( \Ronya4927\EditorWritingGoals\Settings::OPTION_NAME, \Ronya4927\EditorWritingGoals\Settings::get_defaults() );
 	}
 }
 register_activation_hook( __FILE__, 'editor_writing_goals_activate' );
 
-add_action( 'plugins_loaded', array( \EditorWritingGoals\Plugin::class, 'init' ) );
+add_action( 'plugins_loaded', array( \Ronya4927\EditorWritingGoals\Plugin::class, 'init' ) );

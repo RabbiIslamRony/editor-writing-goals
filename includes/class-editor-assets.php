@@ -2,10 +2,10 @@
 /**
  * Block editor assets.
  *
- * @package EditorWritingGoals
+ * @package Ronya4927EditorWritingGoals
  */
 
-namespace EditorWritingGoals;
+namespace Ronya4927\EditorWritingGoals;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -30,23 +30,23 @@ class Editor_Assets {
 	 * @return void
 	 */
 	public function enqueue_assets() {
-		$asset_path = EWG_PLUGIN_DIR . 'build/index.asset.php';
+		$asset_path = EDITOR_WRITING_GOALS_PLUGIN_DIR . 'build/index.asset.php';
 		$asset      = file_exists( $asset_path )
 			? include $asset_path
 			: array(
 				'dependencies' => array( 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-i18n', 'wp-plugins' ),
-				'version'      => EWG_VERSION,
+				'version'      => EDITOR_WRITING_GOALS_VERSION,
 			);
 
 		wp_enqueue_script(
 			'editor-writing-goals-editor',
-			EWG_PLUGIN_URL . 'build/index.js',
+			EDITOR_WRITING_GOALS_PLUGIN_URL . 'build/index.js',
 			isset( $asset['dependencies'] ) ? $asset['dependencies'] : array(),
-			isset( $asset['version'] ) ? $asset['version'] : EWG_VERSION,
+			isset( $asset['version'] ) ? $asset['version'] : EDITOR_WRITING_GOALS_VERSION,
 			true
 		);
 
-		wp_set_script_translations( 'editor-writing-goals-editor', 'editor-writing-goals', EWG_PLUGIN_DIR . 'languages' );
+		wp_set_script_translations( 'editor-writing-goals-editor', 'editor-writing-goals' );
 
 		wp_add_inline_script(
 			'editor-writing-goals-editor',
@@ -62,12 +62,12 @@ class Editor_Assets {
 			'before'
 		);
 
-		$style_path = EWG_PLUGIN_DIR . 'build/index.css';
+		$style_path = EDITOR_WRITING_GOALS_PLUGIN_DIR . 'build/index.css';
 
 		if ( file_exists( $style_path ) ) {
 			wp_enqueue_style(
 				'editor-writing-goals-editor',
-				EWG_PLUGIN_URL . 'build/index.css',
+				EDITOR_WRITING_GOALS_PLUGIN_URL . 'build/index.css',
 				array( 'wp-components' ),
 				filemtime( $style_path )
 			);

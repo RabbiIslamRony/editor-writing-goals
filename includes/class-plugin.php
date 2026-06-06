@@ -2,10 +2,10 @@
 /**
  * Plugin loader.
  *
- * @package EditorWritingGoals
+ * @package Ronya4927EditorWritingGoals
  */
 
-namespace EditorWritingGoals;
+namespace Ronya4927\EditorWritingGoals;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

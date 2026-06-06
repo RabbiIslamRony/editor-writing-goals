@@ -2,7 +2,7 @@
 /**
  * Uninstall cleanup for Editor Writing Goals.
  *
- * @package EditorWritingGoals
+ * @package Ronya4927EditorWritingGoals
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {

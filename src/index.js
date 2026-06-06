@@ -137,7 +137,7 @@ const getLengthStatus = ( count, min, max ) => {
 };
 
 const MetricRow = ( { label, value } ) => (
-	<PanelRow className="ewg-metric-row">
+	<PanelRow className="editor-writing-goals-metric-row">
 		<span>{ label }</span>
 		<strong>{ value }</strong>
 	</PanelRow>
@@ -147,9 +147,11 @@ const StatusRow = ( { label, count, min, max } ) => {
 	const status = getLengthStatus( count, min, max );
 
 	return (
-		<PanelRow className="ewg-metric-row">
+		<PanelRow className="editor-writing-goals-metric-row">
 			<span>{ label }</span>
-			<span className={ `ewg-status ${ status.className }` }>
+			<span
+				className={ `editor-writing-goals-status ${ status.className }` }
+			>
 				{ sprintf(
 					/* translators: 1: status label, 2: character count. */
 					__( '%1$s (%2$d)', 'editor-writing-goals' ),
@@ -173,8 +175,8 @@ const GoalProgress = ( { label, current, target } ) => {
 	const percent = Math.min( 100, Math.round( ( current / target ) * 100 ) );
 
 	return (
-		<div className="ewg-progress">
-			<div className="ewg-progress__header">
+		<div className="editor-writing-goals-progress">
+			<div className="editor-writing-goals-progress__header">
 				<span>{ label }</span>
 				<strong>{ percent }%</strong>
 			</div>
@@ -239,8 +241,8 @@ const WritingGoalsPanel = () => {
 			title={ __( 'Writing Goals', 'editor-writing-goals' ) }
 			className="editor-writing-goals-panel"
 		>
-			<div className="ewg-panel">
-				<div className="ewg-section">
+			<div className="editor-writing-goals-panel-content">
+				<div className="editor-writing-goals-section">
 					<MetricRow
 						label={ __( 'Words', 'editor-writing-goals' ) }
 						value={ metrics.words }
@@ -271,7 +273,7 @@ const WritingGoalsPanel = () => {
 					/>
 				</div>
 
-				<div className="ewg-section">
+				<div className="editor-writing-goals-section">
 					<TextControl
 						label={ __( 'Target words', 'editor-writing-goals' ) }
 						type="number"
@@ -331,7 +333,7 @@ const WritingGoalsPanel = () => {
 				</div>
 
 				{ showLengthChecks && (
-					<div className="ewg-section">
+					<div className="editor-writing-goals-section">
 						<BaseControl.VisualLabel>
 							{ __( 'Length checks', 'editor-writing-goals' ) }
 						</BaseControl.VisualLabel>
@@ -360,7 +362,7 @@ const WritingGoalsPanel = () => {
 				{ Boolean(
 					Number( resolvedSettings.enable_readability_check )
 				) && (
-					<div className="ewg-section">
+					<div className="editor-writing-goals-section">
 						<BaseControl.VisualLabel>
 							{ __( 'Readability', 'editor-writing-goals' ) }
 						</BaseControl.VisualLabel>
