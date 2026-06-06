@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/RabbiIslamRony/editor-writing-goals
  * Description: Track writing goals, content metrics, length checks, and readability directly in the block editor sidebar.
  * Version: 1.0.0
- * Requires at least: 6.5
+ * Requires at least: 7.0
  * Requires PHP: 7.4
  * Author: ronya4927
  * Author URI: https://profiles.wordpress.org/ronya4927/
