@@ -55,4 +55,4 @@ jobs:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: editor-writing-goals
           VERSION: ${{ steps.plugin-version.outputs.version }}
-          ASSETS_DIR: wordpress-org-assets/assets
+          ASSETS_DIR: .wordpress-org
