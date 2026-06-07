@@ -16,3 +16,4 @@ package.json
 scripts
 *.zip
 dist
+wordpress-org-assets

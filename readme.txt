@@ -16,6 +16,8 @@ Editor Writing Goals is a lightweight editor-only plugin for writers, bloggers, 
 
 The plugin adds one focused panel to the block editor sidebar. It does not add frontend output, shortcodes, tracking, AI features, or external service calls.
 
+Use it to track word count, character count, estimated reading time, title and excerpt length, and simple readability signals without leaving the editor.
+
 = Features =
 
 * Live word count.
@@ -53,6 +55,11 @@ Per-post goals are saved as protected post meta. Global defaults are saved in Wo
 2. Activate the plugin through the Plugins screen in WordPress.
 3. Go to Settings > Editor Writing Goals to set default goals and feature toggles.
 4. Open a post or page in the block editor and use the Writing Goals panel in the document sidebar.
+
+== Screenshots ==
+
+1. Writing Goals panel in the block editor sidebar showing live metrics, per-post goals, length checks, and readability insights.
+2. Settings page for configuring default writing goals, reading speed, and editor check toggles.
 
 == Frequently Asked Questions ==
 
